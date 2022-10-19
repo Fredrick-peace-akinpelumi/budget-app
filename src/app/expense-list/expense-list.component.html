@@ -1,0 +1,102 @@
+<nav class="navbar navbar-expand-lg bg-light ">
+    <div class="container-fluid">
+      <a class="navbar-brand fs-1 text-success ms-2" routerLink="/home"><i class="fa fa-wallet fs-3 fw-bolder text-dark"></i></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="mx-lg-auto">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active text-dark fs-5" aria-current="page" routerLink="">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark fs-5" routerLink="/list">Expense List</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container d-lg-flex mt-5">
+
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <div class="card rounded-0 shadow">
+              <div class="card-body">
+                  <h4 class="text-center fw-bold">Expense List</h4>
+                 
+                      <hr class="bg-primary mx-auto border-2 w-25 bg-opacity-100">
+                  
+                      <div class="list-group-item" *ngFor="let item of expArray; index as id">
+                          <div class="d-flex align-items-center w-100">
+                              <div class="col-6">
+                                  <p class="m-0 text-sm mx-2">{{item.expense}}</p>
+                              </div>
+                              <div class="col-3 flex-shrink-1 flex-grow-1">
+                                  <p class="m-0 text-sm text-end mx-2"><span>$</span> <span >{{item.expenseAmount}}</span></p>
+                              </div>
+                              <div class="col-3 text-center">
+                                  <button class="btn btn-sm btn-outline-secondary" (click)="getUser(id)" data-bs-toggle="modal" data-bs-target="#editExpenseModal"   type="button"><i class="fa fa-edit"></i></button>
+                                  <button class="btn btn-sm btn-outline-danger ms-2 " (click)="delete(id)" type="button"><i class="fa fa-trash"></i></button>
+                              </div>
+                          </div>
+                      </div>
+      
+                  </div>
+              </div>
+          </div>
+      
+          <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-4 ms-lg-4">
+              <div class="card rounded-0 shadow">
+                  <div class="card-body">
+                      <div class="icon-field text-center">
+                          <div class="d-flex flex-column align-items-center justify-content-center">
+                              <div class="icon-box rounded-0 shadow px-4 py-3 bg-gradient bg-danger bg-opacity-75 w-75 mb-2">
+                                  <i class="fa fa-money-bill-alt fs-3 fw-bolder text-light"></i>
+                              </div>
+                              <small><b>Expenses</b></small>
+                          </div>
+                      </div>
+                      <div class="border-top">
+                          <div class="text-field" >
+                              <h4 class="text-center mt-3"><b>$<span class="expense-amount ms-1">{{expenseTotal}}.00</span></b></h4>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+  </div>
+     
+  
+  
+  <div class="modal fade" id="editExpenseModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editExpenseLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content rounded-0">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="editExpenseLabel"><i class="fa fa-edit"></i> Edit Expense</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <div class="container-fluid">
+                      <!-- <form action="" id="edit-expense-form"> -->
+                          <input type="hidden" name="id">
+                          <div class="form-group">
+                              <label for="" class="control-label">Enter Expense Name</label>
+                              <input type="text" name="expense" [(ngModel)]="expense" class="form-control form-control-lg" required>
+                          </div>
+                          <div class="form-group">
+                              <label for="" class="control-label">Enter Expense Amount</label>
+                              <input type="number" min="0" name="expenseAmount" [(ngModel)]="expenseAmount" class="form-control form-control-lg text-end" required>
+                          </div>
+                      <!-- </form> -->
+                  </div>
+              </div>
+              <div class="modal-footer" >
+                  <button type="submit" class="btn btn-primary border btn-sm rounded-0" form="edit-expense-form" data-bs-dismiss="modal" (click)="edit()">Save Expense</button>
+                  <button type="button" class="btn btn-light border btn-sm rounded-0" data-bs-dismiss="modal">Close</button>
+              </div>
+          </div>
+      </div>
+  </div>
+
