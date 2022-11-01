@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand fs-1 text-success ms-2" routerLink="/home"><i class="fa fa-wallet fs-3 fw-bolder text-dark"></i></a>
+      <a class="navbar-brand text-success ms-2" routerLink="/budget"><i class="fa  fa-wallet fs-3 fw-bolder text-dark"></i> <b class="ms-2">spendHelp</b></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -8,21 +8,21 @@
         <div class="mx-lg-auto">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active text-dark fs-5" aria-current="page" routerLink="">Home</a>
+              <a class="nav-link active text-dark fs-5" aria-current="page" routerLink="/budget">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link text-dark fs-5" routerLink="/list">Expense List</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-dark  fs-5">Pricing</a>
+              <a class="nav-link text-primary fs-5 log" (click)="logOut()">Log out</a>
             </li>
           </ul>
         </div>
       </div>
     </div>
   </nav>
- 
-       
+
+
         <div class="col-lg-12">
             <h1 class="fw-bolder text-center" id="project-title"> Budget App </h1>
         </div>
@@ -33,9 +33,9 @@
                         <div class="card-body">
                             <div class="container-fluid">
                                 <h4 class="text-center fw-bold">Action Fields</h4>
-                               
+
                                     <hr class="bg-primary border-2 w-25 mx-auto bg-opacity-100">
-                                
+
                                 <dl>
                                     <dt class="fw-bolder"><i class="fas fa-circle"></i> Click the button below to update your Wallet Amount</dt>
                                     <dd class="text-center py-3">
@@ -55,8 +55,9 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <div class="card rounded-0 shadow">
-                        <div class="card-body">
+                  <div class="card rounded-0 shadow">
+                    <div class="card-body">
+                          <p class="fw-bold fs-3">Welcome {{this.user.firstName}} {{this.user.lastName}} 🥰</p>
                             <div id="summary-field">
                                 <div class="row justify-content-center">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-4">
@@ -103,14 +104,14 @@
                                                 <div class="icon-field text-center">
                                                     <div class="d-flex flex-column align-items-center justify-content-center">
                                                         <div class="icon-box rounded-0 shadow px-4 py-3 bg-gradient bg-light border w-75 mb-2">
-                                                            <i class="fa fa-balance-scale fs-3 fw-bolder text-dark"></i> 
+                                                            <i class="fa fa-balance-scale fs-3 fw-bolder text-dark"></i>
                                                         </div>
                                                         <small><b>Balance</b></small>
                                                     </div>
                                                 </div>
                                                 <div class="border-top">
                                                     <div class="text-field" >
-                                                        <h4 class="text-center mt-3"><b>$<span class="balance-amount ms-1">{{newBal}}.00</span></b></h4>
+                                                        <h4 class="text-center mt-3"><b>$<span class="balance-amount ms-1">{{wallAmt-expenseTotal}}.00</span></b></h4>
                                                     </div>
                                                 </div>
                                             </div>
@@ -122,8 +123,8 @@
                     </div>
                 </div>
 
-              
-        
+
+
 
     <div class="modal fade" id="walletModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="walletLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -177,7 +178,7 @@
             </div>
         </div>
     </div>
-    
+
 
 
 

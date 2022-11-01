@@ -1,5 +1,7 @@
+import { getLocaleDateFormat } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-
+import { Route, Router } from '@angular/router';
+import { UserServiceService } from '../services/user-service.service';
 @Component({
   selector: 'app-budget',
   templateUrl: './budget.component.html',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BudgetComponent implements OnInit {
 
-  public walletAmount:number = 0;
+  public walletAmount:string = "";
   public wallAmt: number = 0;
   public amt:string = "";
   public expense:string = ""
@@ -16,46 +18,72 @@ export class BudgetComponent implements OnInit {
   public expAmt:number = 0
   public expArray:any = [];
   public expenseTotal:number=0;
-  public expens:any = {}
+  public date:any= ""
+  public month:any = ""
+  public year:any = ""
+  public sec:any = ""
+  public min:any =""
+  public hr:any = ""
   public index:any=null;
+  public allUser:any = []
+  public user:any = {}
+  public email: any = ""
+  public userIndex:any = ""
 
-  constructor() { }
+  constructor(
+    public router: Router,
+    public userService : UserServiceService
+    ) { }
 
-  ngOnInit(): void {
-    this.expArray = JSON.parse(localStorage["expenses"])
-    this.wallAmt = JSON.parse(localStorage["amount"]);
-    for(let i=0;i<this.expArray.length;i++){
-      this.expenseTotal+=this.expArray[i].expenseAmount;
-    }
-    this.newBal=this.wallAmt-this.expenseTotal;
+    ngOnInit(): void {
+    // this.expArray = this.userService.getExpenses()
+    // this.wallAmt = this.userService.getAmount()
+    // this.allUser  = this.userService.getUsers()
+    // this.email = this.userService.getLoginUser()
+    // this.userIndex = this.allUser.findIndex((user:any, i:any)=>user.email==this.email)
+
+
+
+    // let found = this.allUser.find((user:any, i:any)=>user.email==this.email)
+    this.user= this.userService.HandleCurrentuser()
+    this.wallAmt=this.user.walletAmount;
+
+      this.expenseTotal=this.userService.getExpensesTotal()
+
+  }
+
+  logOut(){
+    localStorage.removeItem("email")
+    this.router.navigate([""])
+
   }
   updateWallet(){
-    this.wallAmt += this.walletAmount;
-    this.newBal += this.walletAmount
-    localStorage.setItem("amount", JSON.stringify(this.wallAmt))   
-    
+    let amt=Number(this.walletAmount);
+    let result=this.userService.HandleUpdate(amt);
+    this.wallAmt+=amt
+    this.newBal +=this.wallAmt
   }
 
   saveExpense(){
-    if (this.wallAmt < this.expenseAmount) {
-      alert("Kindly Update Wallet")
+    let getDate= new Date().toISOString();
+    this.date = getDate;
+    if ( this.expense=="" || this.expenseAmount=="") {
+      alert("input details")
     }else{
-
-      if ( this.expense=="" || this.expenseAmount=="") {
-        alert("input details")
+      if (this.user.walletAmount < (this.expenseAmount +this.expenseTotal)) {
+        alert("Kindly Update Wallet")
       }else{
-        this.expenseTotal+=this.expenseAmount
-        this.expArray.push({expense:this.expense, expenseAmount:this.expenseAmount}) 
-        this.newBal -=this.expenseAmount
-        localStorage.setItem("expenses", JSON.stringify(this.expArray))
-      this.expense="";
-      this.expenseAmount="";
-      alert("Expense Added Successfully")
-      
-        
-     }
+        let result=this.userService.HandleSave({expense:this.expense,expenseAmount:this.expenseAmount,creator:this.user.email, date:this.date})
+       this.expenseTotal+=this.expenseAmount;
+        if(result){
+
+        }
+             this.expense="";
+        this.expenseAmount="";
+        alert("Expense Added Successfully")
+      }
     }
   }
 
-  
+
 }

@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand text-success ms-2" routerLink="/home"><i class="fa  fa-wallet fs-3 fw-bolder text-dark"></i> <b class="ms-2">spendHelp</b></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="mx-lg-auto">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active text-dark fs-5" aria-current="page" routerLink="">Sign up</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark fs-5" routerLink="/login">Sign in</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<div class="d-lg-flex mt-5">
+
+
+<div class="container text-light fs-1 p-2 col-lg-4 text-center">
+  <p class="text fw-bold">Welcome to <b class="text-success">spendHelp,</b> We help you in managing how you spend your income,<br> We help you save <br> We help you list your expenses and monitor your money <br>We are the best in managing your money😚</p>
+</div>
+<div class="container bg-white  col-lg-4 p-5 ">
+  <div class="row">
+    <h2>Sign up to <span class="text-danger">spendHelp</span></h2>
+    <p class="text-danger fw-bold">{{message}}</p>
+    <div class="form-floating ">
+      <input type="text" placeholder="First Name" [(ngModel)]="firstName"  class="form-control shadow-sm border-0 mb-3 ">
+      <label for="">First Name</label>
+    </div>
+    <div class="form-floating">
+      <input type="text" placeholder="Last Name" [(ngModel)]="lastName" class="form-control shadow-sm border-0 mb-3">
+      <label for="">Last Name</label>
+    </div>
+    <div class="form-floating">
+      <input type="email" placeholder="email " [(ngModel)]="email " class="form-control shadow-sm border-0 mb-3">
+      <label for="">email </label>
+    </div>
+    <div class="form-floating">
+      <input type="password" placeholder="password" [(ngModel)]="password" class="form-control shadow-sm border-0 mb-3">
+      <label for="">password</label>
+    </div>
+        <button class="btn btn-primary p-2 rounded-3" (click)="signUp()">Sign up now👇👇</button>
+        <p>Already have an account?? <span class="text-primary mt-2 log" routerLink="/login">Login here🤏👌</span></p>
+  </div>
+
+</div>
+
+</div>
+

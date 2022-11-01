@@ -1,4 +1,7 @@
 
+.log{
+  cursor: pointer;
+}
 
 main {
     padding: 1em 0;

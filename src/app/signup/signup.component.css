@@ -1,0 +1,20 @@
+.text{
+  animation-name: text;
+  animation-duration: 5s;
+  animation-iteration-count: initial;
+  animation-play-state: running;
+}
+@keyframes text {
+  from{
+    transform: translateX(-80vh);
+  }
+  t0{
+    transform: translateX(0px);
+  }
+}
+button:hover{
+  background-color: red;
+}
+.log{
+  cursor: pointer;
+}

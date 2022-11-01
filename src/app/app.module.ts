@@ -6,13 +6,19 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { BudgetComponent } from './budget/budget.component';
 import { ExpenseListComponent } from './expense-list/expense-list.component';
+import { ViewUserComponent } from './view-user/view-user.component';
+import { SignupComponent } from './signup/signup.component';
+import { SigninComponent } from './signin/signin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
 
     BudgetComponent,
-     ExpenseListComponent
+     ExpenseListComponent,
+     ViewUserComponent,
+     SignupComponent,
+     SigninComponent
   ],
   imports: [
     BrowserModule,
