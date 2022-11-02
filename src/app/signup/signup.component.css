@@ -8,7 +8,7 @@
   from{
     transform: translateX(-80vh);
   }
-  t0{
+  to{
     transform: translateX(0px);
   }
 }
